@@ -1,0 +1,8 @@
+#camera-wrapper { position: absolute; z-index: 10001; width: 0px; height: 0px; display: none; background-color: #CE45BE; }
+#camera-wrapper .camera { width: 640px; height: 480px; opacity: 0; }
+#camera-wrapper .closecamera { cursor: pointer; position: absolute; top: 0px; right: 0px; width: 42px; height: 42px; }
+#camera-wrapper .takepicture { width: 50px; height: 37px; cursor: pointer; position: absolute; top: 8px; left: 12px; }
+#camera-wrapper .takepicture img { width: 50px; height: 37px; }
+#camera-wrapper .camerainfo { color: #FFFFFF; position: absolute; bottom: 5px; left: 5px; text-align: center; }
+#camera-wrapper .camerainfo a { color: #FFFFFF; text-decoration: underline; }
+#camera-wrapper .countdown { width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; z-index: 100; font-size: 436px; display: none; text-align: center; color: #FFFFFF; }

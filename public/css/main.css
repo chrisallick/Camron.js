@@ -1,0 +1,10 @@
+html, body { width: 100%; height: 100%; background-color: #929292; }
+
+#header { font: bold 30px Helvetica; }
+
+.camerainfo a { text-decoration: underline; }
+.snapshot { width: 320px; }
+
+#camrons { width: 80px; position: absolute; top: 10px; right: 10px; }
+#camrons .camron { width: 40px; height: 40px; float: left; overflow: hidden; }
+#camrons .camron img { width: 50px; }
