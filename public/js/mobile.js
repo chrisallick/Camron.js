@@ -1,5 +1,8 @@
 var camronphone;
-$(document).ready(function(){ 
+$(document).ready(function(){
+	document.addEventListener('touchmove',function(e) {
+		e.preventDefault();
+	});
 
 	camronphone = new CamronPhone( window, $("fileinput") );
 

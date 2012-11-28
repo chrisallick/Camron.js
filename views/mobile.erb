@@ -1,13 +1,15 @@
 <div id="wrapper">
-    <div id="fileinput">
+    <div id="fileinput" class="clear">
         <form id="uploadimage" action="/mobileupload" method="post" enctype='multipart/form-data'>
             <img src="/img/camera.png" />
-            <input type="file" id="file" name="file" />
+            <input type="file" id="file" name="files" />
+        </form>
+        <form id="uploadimages" action="/mobileupload" method="post" enctype='multipart/form-data'>
+            <img src="/img/dump.png" />
+            <input type="file" id="files" name="files[]" multiple="" />
         </form>
     </div>
     <canvas id="image"></canvas>
-    <div id="imageswrapper">
-        <div id="images">
-        </div>
+    <div id="images" class="scrollable">
     </div>
 </div>

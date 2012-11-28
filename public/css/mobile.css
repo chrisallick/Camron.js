@@ -2,10 +2,19 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
 
 #wrapper { padding-top: 30px; }
 
-#fileinput { width: 100%; height: 150px; position: relative; text-align: center; }
-#fileinput img { width: 202px; height: 150px; }
+#fileinput { width: 545px; height: 150px; position: relative; text-align: center; margin: 0 auto;}
+
+#fileinput #uploadimage { width: 202px; height: 150px; float: left; margin-right: 50px; }
+#fileinput #uploadimage img { width: 202px; height: 150px; }
+
+#fileinput #uploadimages { width: 293px; height: 150px; float: left; }
+#fileinput #uploadimages img { width: 293px; height: 150px; }
+
 #fileinput #file { opacity: 0; width: 100%; height: 100%; position: absolute; top: 0px; display: block; }
+#fileinput #files { opacity: 0; width: 100%; height: 100%; position: absolute; top: 0px; display: block; }
 
 #image { display: none; }
-#imageswrapper { margin-top: 20px; position: relative; width: 640px; height: 700px; overflow: hidden; }
-#imageswrapper #images { position: absolute; top: 0px; left: 0px; width: 640px; height: 700px; }
+
+#images { margin-top: 30px; position: relative; width: 640px; height: 640px; overflow-y: hidden; overflow-x: scroll; }
+#images .image { width: 640px; height: 640px; position: absolute; top: 0px; left: 0px; text-align: center; }
+#images .image img { position: absolute; top: 0px; left: 0px; display: block; }

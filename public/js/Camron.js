@@ -1,7 +1,8 @@
 Camron = function( _p, _el ) {
 	var self = this;
 	var parent = _p;
-	
+
+	this.trashio = new TrashIO( self, "camronjs" );
 	this.camera = _el;
 	this.timeUntilPhoto = 3;
 	this.ct;
@@ -36,13 +37,40 @@ Camron = function( _p, _el ) {
 
 	}
 
+	this.addImage = function( url ) {
+		console.log( url );
+		
+		var image = $("<div>").addClass("image");
+		var img = new Image();
+		$(img).hide();
+		img.onload = function() {
+			var w = this.width;
+			var h = this.height;
+			$(this).css({
+				width: w/2,
+				height: h/2,
+				top: 320/2 - h/4,
+				left: 320/2 - w/4
+			}).fadeIn();
+		}
+		img.src = url;
+		$(image).html(img);
+		$("#images").prepend(image);
+
+	    $(".image").each(function(index,value){
+	        $(this).css({
+	            left: index*320
+	        });
+	    });
+	}
+
 	this.uploadPhoto = function( img ) {
 		$.ajax({
 			type: 'POST',
 			url: '/uploadfile',
 			dataType: "json",
 			data: { image: img },
-			success: function(resp){
+			success: function(resp) {
 				// if( resp["result"] && resp["result"] == "success") {
 				// 	var msg = trash.createMessage("image",resp["msg"]);
 				// 	trash.trashio.sendMessage(msg);
