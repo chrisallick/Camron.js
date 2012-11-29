@@ -17,13 +17,17 @@ end
 
 @@S3_BUCKET='trash-images'
 
-get '/', :agent => /iPhone/ do
+get '/' do
+  redirect '/channel/camronjs'
+end
+
+get %r{/channel/([\w]+)}, :agent => /iPhone/ do
     erb :mobile, :locals => {
         :mobile => true
     }
 end
 
-get '/' do
+get %r{/channel/([\w]+)} do
     erb :main, :locals => {
         :mobile => false
     }
@@ -41,13 +45,15 @@ get '/images' do
 end
 
 post '/upload' do
+    channel = params[:channel]
+
     if params[:image]
         uuid = UUIDTools::UUID.random_create.to_s
 
         imgix_url = Helpers.s3_upload( Base64.decode64(params[:image]), @@S3_BUCKET, ".jpeg", uuid )
         
-        $redis.lpush( "images:camronjs", imgix_url )
-        $redis.ltrim("images:camronjs", 0, 10)
+        $redis.lpush( "images:#{channel}", imgix_url )
+        $redis.ltrim("images:#{channel}", 0, 10)
 
         return { :result => "success", :msg => imgix_url }.to_json
     end

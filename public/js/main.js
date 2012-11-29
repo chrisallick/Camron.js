@@ -1,7 +1,8 @@
-var camron;
+var camron, channel;
 $(document).ready(function() {
 
-	camron = new Camron( window, $("#camera-wrapper"), true );
+    channel = window.location.pathname.split("/")[2];
+	camron = new Camron( window, $("#camera-wrapper"), channel );
 
 	$("#camera-button").click(function(event){
 		event.preventDefault();
@@ -16,7 +17,7 @@ $(document).ready(function() {
         url: "/images",
         dataType: "json",
         data: {
-            "channel": "camronjs"
+            "channel": channel
         }
     }).done(function(resp){
         if( resp && resp.images && resp.images.length > 0 ) {

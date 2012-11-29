@@ -1,7 +1,8 @@
-Camron = function( _p, _el ) {
+Camron = function( _p, _el, _channel ) {
 	var self = this;
 	var parent = _p;
 
+	this.channel = _channel;
 	this.trashio = new TrashIO( self, "camronjs" );
 	this.camera = _el;
 	this.timeUntilPhoto = 3;

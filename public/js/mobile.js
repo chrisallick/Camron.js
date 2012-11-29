@@ -1,12 +1,14 @@
-var camronphone;
+var camronphone, channel;
 $(document).ready(function(){
+    channel = window.location.pathname.split("/")[2];
+
     document.body.addEventListener('touchmove',function(e){
         if(!$(e.target).hasClass(".scrollable")) {
             e.preventDefault();
         }
     });
 
-    camronphone = new CamronPhone( window, $("fileinput") );
+    camronphone = new CamronPhone( window, $("fileinput"), channel );
 
     $("#file").change(function(){
         camronphone.handleFile( this.files[0] );
@@ -20,7 +22,7 @@ $(document).ready(function(){
         url: "/images",
         dataType: "json",
         data: {
-            "channel": "camronjs"
+            "channel": channel
         }
     }).done(function(resp){
         if( resp && resp.images && resp.images.length > 0 ) {
