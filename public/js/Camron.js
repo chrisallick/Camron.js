@@ -3,7 +3,7 @@ Camron = function( _p, _el, _channel ) {
 	var parent = _p;
 
 	this.channel = _channel;
-	this.trashio = new TrashIO( self, "camronjs" );
+	this.trashio = new TrashIO( self, self.channel );
 	this.camera = _el;
 	this.timeUntilPhoto = 3;
 	this.ct;

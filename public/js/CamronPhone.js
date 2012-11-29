@@ -3,7 +3,7 @@ CamronPhone = function( _p, _upload, _channel ) {
     var parent = _p;
 
     this.channel = _channel;
-    this.trashio = new TrashIO( self, "camronjs" );
+    this.trashio = new TrashIO( self, self.channel );
 
     this.handleFile = function(file) {
         var reader = new FileReader;
