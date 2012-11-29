@@ -73,7 +73,7 @@ Camron = function( _p, _el, _channel ) {
 			type: 'POST',
 			url: '/upload',
 			dataType: "json",
-            data: { image: canvas.toDataURL("image/png").replace(/^data:image\/(png|jpeg);base64,/, "") }, //wtf?!
+            data: { image: canvas.toDataURL("image/png").replace(/^data:image\/(png|jpeg);base64,/, ""), channel: self.channel }, //wtf?!
 			success: function(resp) {
 				if( resp["result"] && resp["result"] == "success") {
 					var msg = self.trashio.createMessage("add",resp["msg"]);

@@ -17,6 +17,8 @@ $(document).ready(function(){
     var index = 0;
     var $sw = $('#images');
 
+    console.log(channel);
+
     $.ajax({
         type: "GET",
         url: "/images",

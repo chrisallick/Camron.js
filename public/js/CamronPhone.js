@@ -51,7 +51,7 @@ CamronPhone = function( _p, _upload, _channel ) {
                         type: 'POST',
                         url: '/upload',
                         dataType: "json",
-                        data: { image: $("#image")[0].toDataURL("image/png").replace(/^data:image\/(png|jpeg);base64,/, "") }, //wtf?!
+                        data: { image: $("#image")[0].toDataURL("image/png").replace(/^data:image\/(png|jpeg);base64,/, ""), channel: self.channel }, //wtf?!
                         success: function(resp){
                             if( resp["result"] && resp["result"] == "success") {
                                 var msg = self.trashio.createMessage("add", resp["msg"] );
