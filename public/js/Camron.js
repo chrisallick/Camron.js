@@ -18,6 +18,14 @@ Camron = function( _p, _el ) {
 	});
 
 	$(".closecamera", self.camera).click(function(){
+		self.close();
+	});
+
+	this.handleResize = function() {
+
+	}
+
+	this.close = function() {
 		$("#camera-button").fadeIn();
 		$(self.camera).animate({
 			top: 0,
@@ -31,15 +39,9 @@ Camron = function( _p, _el ) {
 			}
 			$(self.camera).hide();
 		});
-	});
-
-	this.handleResize = function() {
-
 	}
 
 	this.addImage = function( url ) {
-		console.log( url );
-		
 		var image = $("<div>").addClass("image");
 		var img = new Image();
 		$(img).hide();
@@ -64,17 +66,19 @@ Camron = function( _p, _el ) {
 	    });
 	}
 
-	this.uploadPhoto = function( img ) {
+	this.uploadPhoto = function() {
+		var canvas = document.querySelector('canvas');
 		$.ajax({
 			type: 'POST',
-			url: '/uploadfile',
+			url: '/upload',
 			dataType: "json",
-			data: { image: img },
+            data: { image: canvas.toDataURL("image/png").replace(/^data:image\/(png|jpeg);base64,/, "") }, //wtf?!
 			success: function(resp) {
-				// if( resp["result"] && resp["result"] == "success") {
-				// 	var msg = trash.createMessage("image",resp["msg"]);
-				// 	trash.trashio.sendMessage(msg);
-				// }
+				if( resp["result"] && resp["result"] == "success") {
+					var msg = self.trashio.createMessage("add",resp["msg"]);
+					self.trashio.sendMessage(msg);
+					self.close();
+				}
 				$(self.camera).hide();
 				$("#camera-button").fadeIn();
 			}
@@ -94,28 +98,31 @@ Camron = function( _p, _el ) {
 				$("#main").prepend("<p>dom element:</p><img class='snapshot' src='data:image/jpeg;base64,"+photo+"' /><p>canvas:</p><canvas></canvas>");
 				var canvas = document.querySelector('canvas');
 
-				canvas.width = 320;
-				canvas.height = 240;
+				canvas.width = 640;
+				canvas.height = 480;
 				var ctx = canvas.getContext('2d');
 				var img = new Image();
 				img.onload = function() {
 					ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+					self.uploadPhoto();
 				}
 				img.src = "data:image/jpeg;base64,"+photo;
+				self.uploadPhoto();
 			} else if( self.html5 ) {
 				$("#main").prepend("<p>canvas:</p><canvas></canvas>");
 				var canvas = document.querySelector('canvas');
 
-				canvas.width = 320;
-				canvas.height = 240;
+				canvas.width = 640;
+				canvas.height = 480;
 				var canvas = document.querySelector('canvas');
 
-				canvas.width = 320;
-				canvas.height = 240;
+				canvas.width = 640;
+				canvas.height = 480;
 				var video = document.querySelector('video');
 				var ctx = canvas.getContext('2d');
 				ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 				$("#main").prepend("<p>dom element:</p><img src='"+canvas.toDataURL()+"' />");
+				self.uploadPhoto();
 			}
 		} else {
 			self.ct = setTimeout( self.cameraCountdown, 1000 );

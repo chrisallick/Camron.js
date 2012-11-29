@@ -65,7 +65,28 @@ CamronPhone = function( _p, _upload ) {
         reader.readAsDataURL(file);
     }
 
-    this.addImage = function( img ) {
-        
+    this.addImage = function( url ) {
+        var image = $("<div>").addClass("image");
+        var img = new Image();
+        $(img).hide();
+        img.onload = function(){
+            var w = this.width;
+            var h = this.height;
+            $(this).css({
+                width: w,
+                height: h,
+                top: 640/2 - h/2,
+                left: 640/2 - w/2
+            }).fadeIn();
+        }
+        img.src = url;
+        $(image).html(img);
+        $("#images").prepend(image);
+
+        $(".image").each(function(index,value){
+            $(this).css({
+                left: index*640
+            });
+        });
     }
 }
