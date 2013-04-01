@@ -1,6 +1,6 @@
 class Configure
-    @@S3_KEY = 'AKIAIONDHVBZ6Z4CP75A'
-    @@S3_SECRET = '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'
+    @@S3_KEY = 'AKIAJNFVHNCXMSLWZOAA'
+    @@S3_SECRET = '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'
 
 	def self.getKey()
 		return @@S3_KEY

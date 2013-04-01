@@ -1,8 +1,8 @@
 require './configure.rb'
 
 class Helpers
-    @@S3_KEY = Configure.getKey()
-    @@S3_SECRET = Configure.getSecret()
+    @@S3_KEY='AKIAJNFVHNCXMSLWZOAA'
+    @@S3_SECRET='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'
 
     def self.s3_upload(img_data, bucket, extension, uuid)
         name = uuid + extension
@@ -35,11 +35,7 @@ class Helpers
             :content_type => content_type,
             :public => true
         )
-    
-        if extension == ".gif"
-            return "https://s3.amazonaws.com/"+bucket+"/"+name
-        else
-            return "http://trash.imgix.net/#{name}"
-        end
+
+        return "http://trashio.imgix.net/#{name}"
     end
 end

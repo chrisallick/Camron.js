@@ -6,7 +6,7 @@ TrashIO = function( _p, _room ) {
     self.bConnected;
     self.room = _room;
 
-    self.ws_url = "ws://stage.trash.io:8882/"+self.room;
+    self.ws_url = "ws://54.225.133.101:8882/"+self.room;
 
     this.onWelcome = function(sid,players) {
         var msg = self.createMessage("join",sid);

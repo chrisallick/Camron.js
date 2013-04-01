@@ -15,7 +15,7 @@ configure do
   $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 end
 
-@@S3_BUCKET='trash-images'
+@@S3_BUCKET='trashio'
 
 get '/' do
   redirect '/channel/camronjs'
